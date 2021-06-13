@@ -1,22 +1,8 @@
-import { createStore, combineReducers } from 'redux'
+import { createStore } from 'redux'
 
-const reducers = combineReducers({
-	prop1: function(state, action) {
-	return {
-      exemplo: "Deu certo!"
-    }
-	},
-
-  prop2: function (state, action) {
-    return {
-      exemplo: 'De novo, deu certo!'
-    }
-  }
-})
+import rootReducer from "./reducers"
 
 
-function store() {
-	return createStore(reducers)
-}
+const store = createStore(rootReducer);
 
 export default store
