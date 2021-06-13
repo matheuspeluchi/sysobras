@@ -113,7 +113,7 @@ const MenuDrawer = ({ drawerState }) => {
 }
 
 const mapStateToProps = state => ({
-  drawerState: state.utils.drawer
+  drawerState: state.GlobalState.drawer
 });
 
 export default connect(mapStateToProps)(MenuDrawer)

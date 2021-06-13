@@ -45,7 +45,7 @@ const MenuAppBar = ({ drawerState, toggle }) => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} id="appbar">
       <AppBar position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: drawerState,
@@ -65,7 +65,7 @@ const MenuAppBar = ({ drawerState, toggle }) => {
 }
 
 const mapStateToProps = state => ({
-  drawerState: state.utils.drawer
+  drawerState: state.GlobalState.drawer
 });
 
 const mapDispatchToProps = dispatch => ({

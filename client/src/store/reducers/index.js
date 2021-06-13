@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 
-import utils from './utils'
+import GlobalState from './utils'
 
 
 export default combineReducers({
-  utils
+  GlobalState
 })
