@@ -4,9 +4,12 @@ import Appbar from '../../layout/Appbar'
 import MenuDrawer from '../../layout/Drawer'
 import clsx from 'clsx';
 import Container from '@material-ui/core/Container';
+import FormatListBulleted from '@material-ui/icons/FormatListBulleted';
+import Settings from '@material-ui/icons/Settings'
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 
 import { connect } from 'react-redux';
-
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,17 +32,37 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
     marginRight: 0,
-    marginLeft: 240
+    marginLeft: drawerWidth
   },
 }));
 
 const Home = ({drawerState})=> {
   const classes = useStyles();
-
+  const menu = [
+    {
+      title: "Orçamentos",
+      icon: MonetizationOnIcon
+    },
+    {
+      title: "Ordem de Serviço",
+      icon: AssignmentIcon
+    },
+    {
+      title: "Planilhas",
+      icon: FormatListBulleted
+    },
+     {
+      title: "Divider",
+    },
+    {
+      title: "Configurações",
+      icon: Settings
+    },
+  ]
   return (
     <div>
       <Appbar />
-      <MenuDrawer />
+      <MenuDrawer menu={menu} />
      <main
         className={clsx(classes.content, {
           [classes.contentShift]: drawerState,

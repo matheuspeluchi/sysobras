@@ -9,9 +9,10 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import Logo from '../../img/logo.png'
+
 const drawerWidth = 240;
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
   },
   content: {
     flexGrow: 1,
@@ -70,9 +71,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MenuDrawer = ({ drawerState }) => {
+const MenuDrawer = (props ) => {
   const classes = useStyles();
-
+  const { drawerState, menu } = props;
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -86,25 +87,22 @@ const MenuDrawer = ({ drawerState }) => {
         }}
       >
         <div className={classes.drawerHeader}>
-          Logo
+          <img src={Logo} width="40px" height="40px" alt="Logo"/>
+          <span>EngeSoft</span>
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
+          {menu.map((item, index) => (
+            item.title !== "Divider" ?
+              <ListItem button key={index}>              
+                <ListItemIcon>{<item.icon />}</ListItemIcon>
+                <ListItemText primary={item.title} />
+              </ListItem>
+              : 
+              <Divider key={index}/>
+            
           ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          
         </List>
       </Drawer>
 

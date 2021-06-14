@@ -51,8 +51,8 @@ const MenuAppBar = ({ drawerState, toggle }) => {
           [classes.appBarShift]: drawerState,
         })}>
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon onClick={() => toggle(drawerState)} />
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={() => toggle(drawerState)} >
+            <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             News
