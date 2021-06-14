@@ -9,6 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { connect } from 'react-redux';
 import * as GlobalActions from '../../store/actions/utils';
 import clsx from 'clsx';
+import { bindActionCreators } from 'redux';
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -68,8 +69,6 @@ const mapStateToProps = state => ({
   drawerState: state.GlobalState.drawer
 });
 
-const mapDispatchToProps = dispatch => ({
-  toggle: (drawerState) => dispatch(GlobalActions.toggle(drawerState))
-});
+const mapDispatchToProps = dispatch => bindActionCreators(GlobalActions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(MenuAppBar)
