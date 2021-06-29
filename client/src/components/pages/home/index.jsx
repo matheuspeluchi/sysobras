@@ -17,14 +17,15 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   top: 64,
-   content: {
+  content: {
     flexGrow: 1,
     paddingTop: '70px',
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginRight: 0 ,
+    marginRight: 0,
+    marginLeft: 38
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
     marginRight: 0,
-    marginLeft: drawerWidth
+    marginLeft: drawerWidth 
   },
 }));
 

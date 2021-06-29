@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: 36,
   },
   hide: {
     display: 'none',
@@ -41,6 +41,25 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    whiteSpace: "nowrap"
+  },
+  drawerOpen: {
+    width: drawerWidth,
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  drawerClose: {
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    overflowX: 'hidden',
+    width: theme.spacing(7) + 1,
+    [theme.breakpoints.up('sm')]: {
+      width: theme.spacing(7) + 1,
+    },
   },
   drawerPaper: {
     width: drawerWidth,
@@ -51,24 +70,15 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-    justifyContent: 'space-between',
+    justifyContent: 'start',
   },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: -drawerWidth,
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  },
+  drawerTitle: {
+    marginLeft: theme.spacing(3),
+    fontSize: '1rem',
+    fontFamily: "Roboto",
+    fontWeight: 400
+  }
+
 }));
 
 const MenuDrawer = (props ) => {
@@ -79,16 +89,23 @@ const MenuDrawer = (props ) => {
       <CssBaseline />
       <Drawer
         className={classes.drawer}
-        variant="persistent"
+        variant="permanent"
         anchor="left"
         open={drawerState}
+        className={clsx(classes.drawer, {
+          [classes.drawerOpen]: drawerState,
+          [classes.drawerClose]: !drawerState,
+        })}
         classes={{
-          paper: classes.drawerPaper,
+          paper: clsx({
+            [classes.drawerOpen]: drawerState,
+            [classes.drawerClose]: !drawerState,
+          }),
         }}
       >
         <div className={classes.drawerHeader}>
           <img src={Logo} width="40px" height="40px" alt="Logo"/>
-          <span>EngeSoft</span>
+          {drawerState ?<span className={classes.drawerTitle}>EngeSoft</span> : ''}
         </div>
         <Divider />
         <List>
